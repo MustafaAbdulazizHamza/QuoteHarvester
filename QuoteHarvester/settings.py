@@ -48,7 +48,11 @@ ROBOTSTXT_OBEY = False
 #SPIDER_MIDDLEWARES = {
 #    "QuoteHarvester.middlewares.QuoteharvesterSpiderMiddleware": 543,
 #}
-
+# FEEDS =  { 
+#             'output.json':{
+#                 'format': 'json', 'overwrite': True
+#             }
+#         }
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
@@ -65,6 +69,7 @@ ROBOTSTXT_OBEY = False
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    "QuoteHarvester.pipelines.QuoteharvesterPipeline": 300,
+   "QuoteHarvester.pipelines.SaveToMySQLPipeline": 400
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -92,3 +97,4 @@ ITEM_PIPELINES = {
 REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
+enableDatabaseStorage = True

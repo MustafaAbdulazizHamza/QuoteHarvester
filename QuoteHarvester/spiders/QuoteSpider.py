@@ -11,7 +11,7 @@ class QuotespiderSpider(scrapy.Spider):
             Quote_Item = QuoteItem()
             Quote_Item['quote'] = quote.css('.quoteText::text').get()
             Quote_Item['author'] = quote.css("span.authorOrTitle::text").get()
-            if not quote.css("#quote_book_link_6 a.authorOrTitle::text").get():
+            if quote.css("#quote_book_link_6 a.authorOrTitle::text").get():
                 Quote_Item['book_title'] = quote.css("#quote_book_link_6 a.authorOrTitle::text").get()
             Quote_Item['likes'] = quote.css("div.quoteFooter div.right a.smallText::text").get()
             yield Quote_Item
