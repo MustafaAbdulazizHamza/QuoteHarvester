@@ -18,7 +18,7 @@ NEWSPIDER_MODULE = "QuoteHarvester.spiders"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
-SHELL = 'ipython'
+
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -63,9 +63,9 @@ SHELL = 'ipython'
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "QuoteHarvester.pipelines.QuoteharvesterPipeline": 300,
-#}
+ITEM_PIPELINES = {
+   "QuoteHarvester.pipelines.QuoteharvesterPipeline": 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
