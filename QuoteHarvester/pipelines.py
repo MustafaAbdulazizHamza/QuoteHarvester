@@ -8,7 +8,7 @@
 from itemadapter import ItemAdapter
 import mysql.connector as mysql
 from QuoteHarvester.data import *
-from QuoteHarvester.settings import enableDatabaseStorage
+from QuoteHarvester.settings import enableDatabaseStorage, mySQLServerPassword, mySQLServerUsername 
 class QuoteharvesterPipeline:
     def process_item(self, item, spider):
         adapter = ItemAdapter(item)
@@ -26,7 +26,7 @@ class SaveToMySQLPipeline:
         if enableDatabaseStorage:
             self.db  = mysql.connect(
                 host = 'localhost',
-                user = mySQLServerUSername,
+                user = mySQLServerUsername,
                 password = mySQLServerPassword
             )
             self.cu = self.db.cursor()
