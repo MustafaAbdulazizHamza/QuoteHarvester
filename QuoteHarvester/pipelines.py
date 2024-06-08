@@ -7,7 +7,6 @@
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
 import mysql.connector as mysql
-from QuoteHarvester.data import *
 from QuoteHarvester.settings import enableDatabaseStorage, mySQLServerPassword, mySQLServerUsername 
 class QuoteharvesterPipeline:
     def process_item(self, item, spider):
@@ -36,7 +35,7 @@ class SaveToMySQLPipeline:
     def process_item(self, item, spider):
             if enableDatabaseStorage:
                 adapter = ItemAdapter(item)
-                self.cu.execute("INSERT INTO quotes (quote, book_title, author, likes) VALUES ('{}', '{}','{}', {});".format(adapter['quote'][0],adapter['book_title'], adapter['author'], adapter['likes']))
+                self.cu.execute("INSERT INTO quotes (quote, book_title, author, likes) VALUES (%s,%s,%s,%s);",(adapter['quote'],adapter['book_title'], adapter['author'], adapter['likes']))
                 self.db.commit()
             return item
     def close_spider(self, spider):
